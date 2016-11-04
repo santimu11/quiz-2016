@@ -7,9 +7,17 @@
 </head>
 	<body>
 		<h2>Quiz: el juego de las preguntas</h2>
+		<% if (respuesta === "Correcto"){ %>
+		<p><%= respuesta %></p>
+		<a href="/quizes/question"> Jugar otra vez</a><br>
+		<%}%>
+		<% if (respuesta === "Incorrecto"){ %>
+		<p><%= respuesta %></p>
 		<h3>Estadísticas</h3>
 		<p>Aciertos conseguidos: <%= aciertos %></p>
 		<p>Fallos: <%= fallos %></p>
 		<a href="/quizes/question"> Intentelo otra vez</a>
+		<%}%>
+
 	</body>
 </html>
