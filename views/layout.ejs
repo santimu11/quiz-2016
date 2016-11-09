@@ -27,12 +27,20 @@
     </nav>
 
     	<section class="main" id="s1">
-    		<%- body %>
+        <% if (typeof(errors)!= "undefined" && errors.length) { %>
+          <span id="ErrorMsgs">
+          Corrergir errores:<br>
+          <% for (var i in errors) { %>
+            <span><%= errors[i].message %> </span><br>
+          <% } %>
+          </span>
+        <% } %>
+    	<div><%- body %></div>
     	</section>
 
     	<footer class="main" id="f1">
         <p><a href="http://es.wikipedia.org/wiki/Quiz">¿Qué es un Quiz?</a></p>
-        <p><a href="https://github.com/albsierra/quiz_2015">Repositorio en GitHub</a></p>
+        <p><a href="https://github.com/albsierra/quiz_2016">Repositorio en GitHub</a></p>
     	</footer>
 
     </div>
