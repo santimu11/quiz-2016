@@ -1,5 +1,4 @@
 var models = require('../models/models.js');
-
 //Autoload - factoriza el código si ruta inclue :quizId
 exports.load = function(req, res, next, quizId) {
 models.Quiz.findById(quizId).then(
@@ -15,19 +14,23 @@ models.Quiz.findById(quizId).then(
 //GET /quizes/show
 exports.show = function (req, res) {
 	models.Quiz.findById(req.params.quizId).then(function(quiz){
-		res.render('quizes/show',{ quiz: req.quiz, errors: []});
+		res.render('quizes/show',{ quiz: req.quiz, fallos: req.query.fallos, letra: req.quiz.respuesta.charAt(0),errors: []});
 	})
 };
 
 //GET /quizes/ :id/answer
 exports.answer = function(req, res){
+	var fallo=req.query.fallo;
 	var resultado = 'Incorrecto';
 		if (req.query.respuesta === req.quiz.respuesta){
-			resultado: 'Correcto';
-		} 
+			resultado = 'Correcto';
+		} else {
+			fallo++;
+		}
 		res.render (
 		'quizes/answer',
-		{
+		{	
+			fallos: fallo,
 			quiz: req.quiz,
 			respuesta: resultado,
 			errors: []

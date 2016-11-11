@@ -5,7 +5,13 @@
 </head>
 	<body>	
 		<p><%= respuesta %></p>
+		<% if (respuesta=="Incorrecto"){ %>
+			<% if (fallos>0) { %>
+				<p>Llevas: <%=fallos%> fallos en esta pregunta.</p>
+			<%}%>
+			<a href="/quizes/<%= quiz.id%>?fallos=<%=fallos%>">Volver</a>
+		<%} else {%>
 		<a href="/quizes/<%= quiz.id %>">Volver</a>
-
+		<%}%>
 	</body>
 </html>

@@ -4,8 +4,12 @@
 	<meta charset="utf-8">
 </head>
 <body>
-	<form method="get" action="/quizes/<%= quiz.id %>/answer">
+	<form method="get" action="/quizes/<%= quiz.id %>/answer?<%=fallos%>">
 		<p> Pregunta: <%= quiz.pregunta %> </p>
+		<% if (fallos>0) { %>
+			<p>Pista: la respuesta comienza por: <%= letra %></p>
+		<% } %> 
+		<p><input type="hidden" id="fallo" name="fallo" value="<%= fallos %>"/></p>
 		<input type="text" name="respuesta" value="Respuesta">
 		<input type="submit" name="enviar" value="Enviar"> <br>
 		<a href="/quizes">Volver</a>
