@@ -14,7 +14,11 @@ models.Quiz.findById(quizId).then(
 //GET /quizes/show
 exports.show = function (req, res) {
 	models.Quiz.findById(req.params.quizId).then(function(quiz){
-		res.render('quizes/show',{ quiz: req.quiz, fallos: req.query.fallos, letra: req.quiz.respuesta.charAt(0),errors: []});
+		var pista=""
+		for (var i = 0; i < req.query.fallos; i++) {
+			pista=pista+req.quiz.respuesta.charAt(i);
+		}
+		res.render('quizes/show',{ quiz: req.quiz, fallos: req.query.fallos, letra: pista,errors: []});
 	})
 };
 
