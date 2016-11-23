@@ -1,3 +1,21 @@
+//MW de autorización de accesos HTTP restringidos
+exports.loginRequired = function (req, res, next){
+	if (req.session.user) {
+		next();
+	} else {
+		res.redirect('/login');
+	}
+};
+
+//MW de autorización de acceso con admin
+exports.adminRequired = function (req, res, next){
+	if (req.session.user && req.session.user.username=="admin") {
+		next();
+	} else {
+		res.redirect('/quizes');
+	}
+};
+
 //Get /login   --Formulario de login
 exports.new = function(req, res) {
 	var errors = req.session.errors || {};
