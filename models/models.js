@@ -28,13 +28,13 @@ sequelize.sync().then(function() {
 		};
 	});
 
-	Users.count().then(function(count) {
+	User.count().then(function(count) {
 		if (count === 0) { // la tabla se inicializa sólo si está vacía
-			Users.create({
+			User.create({
 					username: 'admin',
 					password: '1234'
 				});
-			Users.create({
+			User.create({
 					username: 'santi',
 					password: '5678'
 				})
@@ -50,8 +50,8 @@ var quiz_path = path.join(__dirname,'quiz');
 var Quiz = sequelize.import(quiz_path);
 
 //Importar definición de la tabla users
-var quiz_path = path.join(__dirname,'users');
-var Users = sequelize.import(quiz_path);
+var user_path = path.join(__dirname,'user');
+var User = sequelize.import(user_path);
 
 //Importar definicion de la tabla Comment
 var comment_path = path.join(__dirname,'comment');
@@ -62,4 +62,4 @@ Quiz.hasMany(Comment);
 
 exports.Quiz = Quiz; //exportar tabla Quiz
 exports.Comment = Comment;
-exports.Users = Users;
+exports.User = User;

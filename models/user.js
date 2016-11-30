@@ -2,7 +2,7 @@
 
 module.exports = function(sequelize, DataTypes) {
 	return sequelize.define(
-		'Users',
+		'User',
 	{ username: {
 		type: DataTypes.STRING,
 		validate: { notEmpty: {msg: "--> Falta Usuario"}}

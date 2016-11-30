@@ -1,0 +1,9 @@
+<p>Listado de usuarios:</p>
+<center><table>
+  <% var i; for (i=0; i < user.length; i++) { %>
+    <tr>
+    <td><%= i+1 %> - <%= user[i].username %></td>
+    </tr>
+  <% } %>
+</table></center>
+<a href="/users/new"><button type="button">Crear usuario</button></a>
