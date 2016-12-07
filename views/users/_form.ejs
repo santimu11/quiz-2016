@@ -1,6 +1,28 @@
-<label for="user" class="rem">Usuario:</label>
-<p><input type="text" id="usuario" name="user[username]" value="<%= user.username %>"/></p>
-<label for="pass" class="rem">Contraseña:</label>
-<p><input type="text" id="pass" name="user[password]" value="<%= user.password %>"/></p>
-<a href="/users"><button type="button">Cancelar</button></a>
-<input type="submit" value="Salvar">
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script>
+	   function confirmPassword() {
+	      var pw1 = document.getElementById('pass').value;    
+	      var pw2 = document.getElementById('pass_confirm').value; 
+	        if (pw1 ===pw2) {
+	        	return true;
+	      	} else {
+				alert('Los passwords introducidos no coinciden.');
+	         	return false;
+	      	} 
+		}
+</script>
+</head>
+<body>
+	<p><label for="user" class="rem">Usuario:</label>
+	<input type="text" id="usuario" name="user[username]" value="<%= user.username %>" required/></p><br>
+	<p><label for="pass" class="rem">Contraseña:</label>
+	<input type="text" id="pass" name="user[password]" value="" required/></p><br>
+	<p><label for="pass2" class="rem">Confirmar contraseña:</label>
+	<input type="text" id="pass_confirm"  value="" required/></p><br>
+	<ahref="/users"><button type="button">Cancelar</button></a>
+    <input type="submit" value="Salvar" onclick="return confirmPassword()"/>
+</body>
+</html>

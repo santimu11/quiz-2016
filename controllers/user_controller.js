@@ -54,10 +54,40 @@ user.validate().then(
 		if (err) {
 			res.render('users/new', {user: user, errors: err.errors});
 		} else {
-		//guarda en DB los campos pregunta y respuesta de user
+		//guarda en DB los campos usuario y contraseña de user
 		user.save({fields: ["username", "password"]}).then(function(){	
 		res.redirect('/users')})
 	//Redirección HTTP (URL relativo) lista de usuarios 
 	}
    }
  );};
+
+//GET /quizes/:id/edit
+exports.edit = function(req, res) {
+	var user = req.user; // autoload de instancia de user
+	res.render('users/edit',{user: user, errors: []});
+};
+
+//PUT /quizes/:id
+exports.update = function(req, res) {
+	req.user.username = req.body.user.username;
+	req.user.password = req.body.user.password;
+
+	req.user.validate().then(function(err){
+			if(err){
+				res.render('users/edit',{user: req.user, errors: err.errors});
+			} else {
+				req.user //save: guarda campos username y password en DB
+				.save( {fields: ["username", "password"]})
+				.then ( function(){ res.redirect('/users');});
+			}	// Redireccion HTTP a lista de username (URL relativo)
+		}
+	);
+};
+
+//DELETE /quizes/:id
+exports.destroy = function (req, res) {
+	req.user.destroy().then( function () {
+		res.redirect('/users');
+	}).catch (function(error){next(error)});
+};

@@ -12,6 +12,7 @@ router.get('/', function(req, res, next) {
 
 //Autoload de comandos con :quizId
 router.param('quizId', quizController.load); //autoload :quizId
+router.param('userId', userController.load); //autoload :userId
 
 //Definicion de rutas de sesion
 router.get('/login', sessionController.new);     //formulario login
@@ -22,6 +23,9 @@ router.get('/logout', sessionController.destroy); //destruir sesión (podemos po
 router.get('/users/', userController.index);  //formulario usuario
 router.get('/users/new', userController.new);  //formulario crear usuario
 router.post('/users', userController.create);  //crear usuario en tabla
+router.get('/users/:userId(\\d+)/edit', sessionController.loginRequired, userController.edit);
+router.put('/users/:userId(\\d+)', sessionController.loginRequired, userController.update);
+router.delete('/users/:userId(\\d+)', sessionController.adminRequired, userController.destroy);
 
 //Definición de rutas de /quizes
 router.get('/quizes', quizController.index);
