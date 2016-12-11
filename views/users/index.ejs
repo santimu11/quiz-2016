@@ -3,7 +3,7 @@
   <% var i; for (i=0; i < user.length; i++) { %>
     <tr>
     <td><%= i+1 %> - <%= user[i].username %></td>
-    <%if(session.user){%>
+    <%if((session.user&&(session.user.username==user[i].username)||session.user&&session.user.username=='admin')) {%>
             <td><a href="users/<%= user[i].id %>/edit"><button>editar</button></a></td>
             <%if (session.user.username=='admin') {%>
             <td>
