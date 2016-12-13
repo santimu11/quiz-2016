@@ -32,11 +32,13 @@ sequelize.sync().then(function() {
 		if (count === 0) { // la tabla se inicializa sólo si está vacía
 			User.create({
 					username: 'admin',
-					password: '1234'
+					password: '1234',
+					aciertos: 0
 				});
 			User.create({
 					username: 'santi',
-					password: '5678'
+					password: '5678',
+					aciertos: 0
 				})
 				.then(function() {
 					console.log('Base de datos inicializada')
