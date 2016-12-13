@@ -21,7 +21,7 @@ exports.show = function (req, res) {
 
 //GET /quizes/ :id/answer
 exports.answer = function(req, res){
-	
+	var aciertos;
 	if (req.session.user){
 		aciertos=req.session.user.aciertos;
 	} else if (isNaN(req.session.aciertos)){
