@@ -5,7 +5,11 @@
 </head>
 	<body>	
 		<p><%= respuesta %></p>
+		<% if (session.user) {%>
+			<p>Aciertos: <%= aciertos %></p>
+		<%}else if (session) {%>
+			<p>Aciertos: <%= aciertos %></p>
+		<%}%>
 		<a href="/quizes/<%= quiz.id %>">Volver</a>
-
 	</body>
 </html>

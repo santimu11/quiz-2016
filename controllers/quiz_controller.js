@@ -21,15 +21,30 @@ exports.show = function (req, res) {
 
 //GET /quizes/ :id/answer
 exports.answer = function(req, res){
+	
+	if (req.session.user){
+		aciertos=req.session.user.aciertos;
+	} else if (isNaN(req.session.aciertos)){
+	 	aciertos=0;
+	} else {
+		aciertos=req.session.aciertos;
+	}	
 	var resultado = 'Incorrecto';
 		if (req.query.respuesta === req.quiz.respuesta){
 			resultado = 'Correcto';
+			aciertos++;
+			if (req.session.user){
+				req.session.user.aciertos=aciertos;
+			} else {
+				req.session.aciertos=aciertos;
+			}
 		} 
 		res.render (
 		'quizes/answer',
 		{
 			quiz: req.quiz,
 			respuesta: resultado,
+			aciertos: aciertos,
 			errors: []
 		}
 	);
